@@ -17,6 +17,29 @@ var WelcomeWagon = React.createClass({
     }
 });
 
+var QuestionRow = React.createClass({
+    render: function() {
+        return (
+            React.createElement('tr', null, 
+                React.createElement('td', null, "Question name")
+            )
+        );
+    }
+});
+
+var QuestionsTable = React.createClass({
+    render: function() {
+        var questionRows = [
+            React.createElement(QuestionRow),
+            React.createElement(QuestionRow),
+            React.createElement(QuestionRow)
+        ];
+        return (
+            React.createElement('table', {className: 'questions-table'}, questionRows)
+        );
+    }
+});
+
 window.onload = function()
 {
     var Timer = React.createClass({
@@ -41,7 +64,7 @@ window.onload = function()
 
     // React.render(React.createElement(Timer, null), document.querySelector('#content'));
 
-    React.render(React.createElement(WelcomeWagon, null), document.querySelector('#content'));
+    React.render(React.createElement(QuestionsTable, null), document.querySelector('#content'));
 
     console.log(new WelcomeDisplay);
     console.log("Page loading complete!");
