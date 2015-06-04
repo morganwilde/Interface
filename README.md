@@ -103,6 +103,11 @@ Finally, at the `render` stage, `Constructor(props, context)` is called in `func
 
 ### React Component life-cycle
 
+1. constructor: Initialization of state. The instance is now retained.
+    1. componentWillMount
+    2. render
+2. (destroyed): The instance is now blank, released by React and ready for GC.
+
 ```javascript
 /**
  * ------------------ The Life-Cycle of a Composite Component ------------------
@@ -130,28 +135,28 @@ Finally, at the `render` stage, `Constructor(props, context)` is called in `func
  *
  * -----------------------------------------------------------------------------
  */
- ```
+```
 
- ### `ReactClass` interface
+### `ReactClass` interface
 
- ```javascript
- var ReactClassInterface = {
-    mixins: SpecPolicy.DEFINE_MANY,
-    statics: SpecPolicy.DEFINE_MANY,
-    propTypes: SpecPolicy.DEFINE_MANY,
-    contextTypes: SpecPolicy.DEFINE_MANY,
-    childContextTypes: SpecPolicy.DEFINE_MANY,
-    getDefaultProps: SpecPolicy.DEFINE_MANY_MERGED,
-    getInitialState: SpecPolicy.DEFINE_MANY_MERGED,
-    getChildContext: SpecPolicy.DEFINE_MANY_MERGED,
-    render: SpecPolicy.DEFINE_ONCE,
-    componentWillMount: SpecPolicy.DEFINE_MANY,
-    componentDidMount: SpecPolicy.DEFINE_MANY,
-    componentWillReceiveProps: SpecPolicy.DEFINE_MANY,
-    shouldComponentUpdate: SpecPolicy.DEFINE_ONCE,
-    componentWillUpdate: SpecPolicy.DEFINE_MANY,
-    componentDidUpdate: SpecPolicy.DEFINE_MANY,
-    componentWillUnmount: SpecPolicy.DEFINE_MANY,
-    updateComponent: SpecPolicy.OVERRIDE_BASE
- };
- ```
+```javascript
+var ReactClassInterface = {
+    mixins:                     SpecPolicy.DEFINE_MANY,
+    statics:                    SpecPolicy.DEFINE_MANY,
+    propTypes:                  SpecPolicy.DEFINE_MANY,
+    contextTypes:               SpecPolicy.DEFINE_MANY,
+    childContextTypes:          SpecPolicy.DEFINE_MANY,
+    getDefaultProps:            SpecPolicy.DEFINE_MANY_MERGED,
+    getInitialState:            SpecPolicy.DEFINE_MANY_MERGED,
+    getChildContext:            SpecPolicy.DEFINE_MANY_MERGED,
+    render:                     SpecPolicy.DEFINE_ONCE,
+    componentWillMount:         SpecPolicy.DEFINE_MANY,
+    componentDidMount:          SpecPolicy.DEFINE_MANY,
+    componentWillReceiveProps:  SpecPolicy.DEFINE_MANY,
+    shouldComponentUpdate:      SpecPolicy.DEFINE_ONCE,
+    componentWillUpdate:        SpecPolicy.DEFINE_MANY,
+    componentDidUpdate:         SpecPolicy.DEFINE_MANY,
+    componentWillUnmount:       SpecPolicy.DEFINE_MANY,
+    updateComponent:            SpecPolicy.OVERRIDE_BASE
+};
+```
