@@ -1,7 +1,8 @@
 var WelcomeDisplay = React.createClass({
     render: function() {
         return React.createElement("div", null, "Welcome!");
-    }
+    },
+    bobby: "test"
 });
 
 var WelcomeWagon = React.createClass({
@@ -40,5 +41,6 @@ window.onload = function()
 
     React.render(React.createElement(WelcomeWagon, null), document.querySelector('#content'));
 
+    console.log(new WelcomeDisplay);
     console.log("Page loading complete!");
 }
