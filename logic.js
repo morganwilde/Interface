@@ -1,10 +1,18 @@
-var TimerDisplay = React.createClass();
+var WelcomeDisplay = React.createClass({
+    render: function() {
+        return React.createElement("div", null, "Welcome!");
+    }
+});
 
-TimerDisplay.render = function() {
-    return (
-        React.createElement("div", null, "TimerDisplay")
-    );
-};
+var WelcomeWagon = React.createClass({
+    render: function() {
+        return React.createElement("div", null, 
+            React.createElement(WelcomeDisplay, null),
+            React.createElement(WelcomeDisplay, null),
+            React.createElement(WelcomeDisplay, null)
+        );
+    }
+});
 
 window.onload = function()
 {
@@ -30,7 +38,7 @@ window.onload = function()
 
     // React.render(React.createElement(Timer, null), document.querySelector('#content'));
 
-    React.render(React.createElement(TimerDisplay, null), document.querySelector('#content'));
+    React.render(React.createElement(WelcomeWagon, null), document.querySelector('#content'));
 
     console.log("Page loading complete!");
 }
