@@ -19,21 +19,36 @@ var WelcomeWagon = React.createClass({
 
 var QuestionRow = React.createClass({
     render: function() {
+        var questionName = typeof this.props.questionName === 'undefined' ? '' : this.props.questionName;
         return (
             React.createElement('tr', null, 
-                React.createElement('td', null, "Question name")
+                React.createElement('td', null, questionName)
             )
         );
     }
 });
 
 var QuestionsTable = React.createClass({
+    getInitialState: function() {
+        return {questionNames: []};
+    },
+    componentDidMount: function() {
+      this.firebaseRef = new Firebase('https://flickering-torch-5178.firebaseio.com/comments');
+      this.firebaseRef.on('value', function(childSnapshot, previousChildName) {
+        var questionNames = this.state.questionNames;
+        questionNames.push(childSnapshot.val())
+        this.setState({questionNames: questionNames});
+      }.bind(this));
+    },
+    componentWillUnmount: function() {
+      this.firebaseRef.off();
+    },
     render: function() {
-        var questionRows = [
-            React.createElement(QuestionRow),
-            React.createElement(QuestionRow),
-            React.createElement(QuestionRow)
-        ];
+        var questionRows = [];
+        this.state.questionNames.forEach(function(questionName) {
+            console.log(questionName);
+            questionRows.push(React.createElement(QuestionRow, {questionName: questionName.val()}));
+        });
         return (
             React.createElement('table', {className: 'questions-table'}, questionRows)
         );
