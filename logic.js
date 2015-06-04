@@ -2,7 +2,9 @@ var WelcomeDisplay = React.createClass({
     render: function() {
         return React.createElement("div", null, "Welcome!");
     },
-    bobby: "test"
+    bobby: function() {
+        return "bobby";
+    }
 });
 
 var WelcomeWagon = React.createClass({

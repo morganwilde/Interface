@@ -149,3 +149,7 @@ var ReactClassInterface = {
     updateComponent:            SpecPolicy.OVERRIDE_BASE
 };
 ```
+
+### `React.createElement()`
+
+To render in React, we need to use `ReactElement.createElement(type, config, children)`, which is a bit like `document.createElement(tag)`. Since javascript doesn't limit the number of arguments passed into a function call, there might be more than one child. The exact number is determined using the `arguments` variable of the function.
