@@ -103,39 +103,28 @@ Finally, at the `render` stage, `Constructor(props, context)` is called in `func
 
 ### React Component life-cycle
 
+#### Creation
+
 1. constructor: Initialization of state. The instance is now retained.
-    1. componentWillMount
-    2. render
+    1. `componentWillMount`
+    2. `render`
+    3. [children's constructors]
+        1. [children's componentWillMount and render]
+        2. [children's componentDidMount]
+        3. `componentDidMount`
+        4. `componentWillUnmount`
+        5. [children's componentWillUnmount]
+    4. [children destroyed]
 2. (destroyed): The instance is now blank, released by React and ready for GC.
 
-```javascript
-/**
- * ------------------ The Life-Cycle of a Composite Component ------------------
- *
- * - constructor: Initialization of state. The instance is now retained.
- *   - componentWillMount
- *   - render
- *   - [children's constructors]
- *     - [children's componentWillMount and render]
- *     - [children's componentDidMount]
- *     - componentDidMount
- *
- *       Update Phases:
- *       - componentWillReceiveProps (only called if parent updated)
- *       - shouldComponentUpdate
- *         - componentWillUpdate
- *           - render
- *           - [children's constructors or receive props phases]
- *         - componentDidUpdate
- *
- *     - componentWillUnmount
- *     - [children's componentWillUnmount]
- *   - [children destroyed]
- * - (destroyed): The instance is now blank, released by React and ready for GC.
- *
- * -----------------------------------------------------------------------------
- */
-```
+#### Update
+
+1. `componentWillReceiveProps` (only called if parent updated)
+2. `shouldComponentUpdate`
+    1. `componentWillUpdate`
+        1. `render`
+        2. [children's constructors or receive props phases]
+    2. `componentDidUpdate`
 
 ### `ReactClass` interface
 
